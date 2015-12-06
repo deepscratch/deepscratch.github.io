@@ -22,9 +22,10 @@ before_script:
   - git checkout master
   - git pull origin master
   - cd ..
-  - ghc-pkg check -v
+  - ls
 script: .cabal-sandbox/bin/site rebuild 
 after_script:
+  - ghc-pkg check -v
   - cd _site
   - git status
   - git add --all
