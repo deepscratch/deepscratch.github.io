@@ -11,7 +11,7 @@ before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
 install:
-  - curl http://bin.begriffs.com/hakyll/cabal-sandbox.tar.xz | tar xJ
+  - curl http://deepscratch.github.io/hakyll-sandbox/hakyll-sandbox.tar.gz | tar xz
   - cabal sandbox init
   - cabal configure --disable-library-profiling --disable-tests --disable-library-coverage --disable-benchmarks --disable-split-objs
   - cabal install -j --disable-documentation hakyll
