@@ -5,6 +5,9 @@ branches:
 env:
   global:
     - secure: "NMyZoUdXTGPz6l/ZBV9+yZ/rl/4WwjmIN/bAr/uDx1OK/RqyJe4aixCEprAnWXam9A+n+dQIOOJ+YoQ1QSqiW9KNRo2Y00TmxTn6KmI6bmcgpN6mK9rSr3PtHRR+wz9ncxyHj6l5S0gbd8FmPXxwQckA4sQpku2F0HVtFWw73S1BFv5At05iYz5ltXR30MNC6jIciSjZGdg4z0KW8WedXM//mDBUTstmvFXozvnZ99tUnmlafwbzCydKSnGxvnY3NQjrClptGzW7wtEcE5T9LVdb6z0Xv+6EBduGljkfBPWHSwwkwaMQte/xJ0SqDdC4YWgKIOH3qTd7vC8f2w2jcoO8T0s89PXEazBujXNl7piV3CQvoZZm+Vo2xv04JtOEvunNIB1VeQsmijssdqKcO5b6oyWkVn6KyAES+EKMiV/+vL/i5hX44iYeL8mshMCE7up1ymCWnRIGopJJ9hWrmsd5otEtjb+wCWIDYZGRSIbTOLdH13K6GmvxuW+QYHePyVCx+lIPAjmS0IptlXAMYKB7YRXFE8PA1r+mAgSUI2DVcK6NQeZMYokLVVQEasRuhbbM4HCHyYFRGvooBRPgL5nBvqac0zVFMN+LqwtwQyrGEhHTLCbutl/kWVeRtFR1ieN36WFuk2aoX0fNlihmvYXS5ewIrzi6Ooc8kEKJHnE="
+before_install:
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
 install:
   - cabal install hakyll
   - ghc --make site.hs
@@ -18,8 +21,8 @@ after_script:
   - cd _site
   - git status
   - git add --all
-  - git config --global user.email "your@mailaddress.com"
-  - git config --global user.name "Travis"
+  - git config --global user.email "${GH_EMAIL}"
+  - git config --global user.name "travisci"
   - git commit -m "snapshot $(date '+%m/%d/%y %H:%M')"
   - git push "$REPO_URL" master | grep -v http
   - cd ..
