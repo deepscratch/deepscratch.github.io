@@ -24,6 +24,7 @@ before_script:
   - cd ..
   - ls -alh
   - ls -alh .cabal-sandbox/bin
+  - cabal exec -- ghc --make site.hs
 script: .cabal-sandbox/bin/site rebuild 
 after_script:
   - ghc-pkg check -v
