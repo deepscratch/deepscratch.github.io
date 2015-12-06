@@ -13,6 +13,7 @@ before_install:
 install:
   - curl http://bin.begriffs.com/hakyll/cabal-sandbox.tar.xz | tar xJ
   - cabal sandbox init
+  - cabal install hakyll
   - cabal configure --disable-library-profiling --disable-tests --disable-library-coverage --disable-benchmarks --disable-split-objs
 before_script:
   - git config --global user.email "${GH_EMAIL}"
