@@ -7,13 +7,14 @@ branches:
     - source
 env:
   global:
-    - secure: "eJUD6YrCYFv7DQoMQ3SsHIMsdrATCI3PEjNRUNMU4UvyU/QqCwiK+2SNRI0ybF1JCtzxtBm6Y5ZQ4dgHtvbbYOlRLxi4+wFFjZ4KbJTwfpl7WZPQXKdk2j+vV0nkEWHam+/VdF5BHbLNxvai4g649VGQbK/XPzS81DbrKgJvrGYQVyPyCk9w26G0jOqgU76ZO9uAwhP4I5u1VUQww/htWdMkBlB9MHShQTSrb8yM1AvgXq0yfWwd+FiseMGUS9rs4TjZmgUI6pySV138Op0NOQE8tLdQoaMJeB6WMjVsw/JsHsxz+wMevWojywWE3H25NT8CDm5QjSLtk9VSjnlhijeYnspthbSOGeD1vOycwHcGTiytaI8ZzcR8xaVw4uXXSAg37nSOGpN5wUuZrNp9N66sTttornQcnL+45R6CWug5SnG88XZYrufNA9SJXBikHYiQftSaJiZ9pYkrQgyPXDuASiKosUlOmyta0v+nYDxw2pkiOQx/KB6DXxbeSEyQDkzCR04kOCOIxBv8LuzCo/kGschWeUZtjKaFvU+cmRRSeXDHSJKwQaemTK7LSzitV6xEXDSdPyS7z8VuGNESyYXcma6iSkb4+9r9B2owtOgFTBYyj9WmL3181u97DcrKSVqBx7rYxuEhWuCjpDOHlfsPTurKCDD6/F8zsbWnnZ4="
+    - secure: "WCcjLI3s3p4iHp4X/dj1SqUtmiax19x4qJqW6kQ7biCtt024Qjgrfps2x00xW953y42OH8NAMggLocyKn//yXwBhBgd44G51As7hW43ISTdMQakV4nu4JKsqi/9bkN8wv7InJpsC8FJaabOXIl2xjr9zM8azkdQA96z9tUGDvGANMNBBLKVEjmawZooTOmGaS2qUeMCh0o9J9iFbePKIS1WPrhxenqyG+CiPp77OfGDz5mUxGDSi2vK211XqNutJzjdY3YmLqU9VAoyUCHWe7j7d98atb7Ayk9koVVni4pgq3455SMxt/dXkW1HthPUP8sXGoHarIMGJBTp+gU5UZh13c9U6p/zk4B17gNRkOgaTpLPV6ylnYbj0fzU47D1nGAg8PJkyN5NSGhCHiKZfOR9R1qzfLGqZUzyzS0CdU8xsCsfL+cCCgh2Y58ceuSd9/Nh84XZHdk850iuB1ch05QrUCndqaQiEE1Mcqhe9rQsznBWdw0G5rkYG4ROTQ5QVxVSMngFy0IZr6SrMFd/bFtb6wgphqUADx+PC8dkojaJsrtqm3XwHd5OD5o0mehS/6vazg3cAdDsJULse6le/pDHwoNrCELh3scYczvWrBCQEBeAOY7F0e6Hf96x3TfHnUMO8Clt4yn6b5g3U1I2axePSWuCRfbIh/SckDTVGnd4="
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
 install:
   - curl http://deepscratch.github.io/hakyll-sandbox/hakyll-sandbox.tar.xz | tar Jx
   - cabal sandbox init
+  - cabal sandbox configure
 before_script:
   - git config --global user.email "$GH_EMAIL"
   - git config --global user.name "$GH_NAME"
@@ -21,6 +22,7 @@ before_script:
   - git checkout master
   - git pull origin master
   - cd ..
+  - ghc-pkg check -v
 script: cabal run rebuild
 after_script:
   - cd _site
