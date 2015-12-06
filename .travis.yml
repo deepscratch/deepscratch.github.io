@@ -11,20 +11,21 @@ before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
 install:
-  - cabal install hakyll
-  - ghc --make site.hs
+  - curl http://bin.begriffs.com/hakyll/cabal-sandbox.tar.xz | tar xJ
+  - cabal sandbox init
+  - cabal configure --disable-library-profiling --disable-tests --disable-library-coverage --disable-benchmarks --disable-split-objs
 before_script:
+  - git config --global user.email "${GH_EMAIL}"
+  - git config --global user.name "travisci"
   - cd _site
   - git checkout master
   - git pull origin master
   - cd ..
-script: ./site build
+script: cabal run -j build
 after_script:
   - cd _site
   - git status
   - git add --all
-  - git config --global user.email "${GH_EMAIL}"
-  - git config --global user.name "travisci"
   - git commit -m "snapshot $(date '+%m/%d/%y %H:%M')"
   - git push "$REPO_URL" master | grep -v http
   - cd ..
