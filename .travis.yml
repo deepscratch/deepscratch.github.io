@@ -12,6 +12,7 @@ before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
 install:
+  - apt-get uprade -y
   - curl http://deepscratch.github.io/hakyll-sandbox/hakyll-sandbox.tar.xz | tar Jx
   - cabal sandbox init
   - cabal configure --disable-library-profiling --disable-tests --disable-library-coverage --disable-benchmarks --disable-split-objs
@@ -22,7 +23,7 @@ before_script:
   - git checkout master
   - git pull origin master
   - cd ..
-script: cabal run -j build
+script: cabal exec -- ghc --make site.hs
 after_script:
   - ghc-pkg check -v
   - cd _site
