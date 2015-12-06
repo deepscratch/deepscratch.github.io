@@ -14,8 +14,6 @@ before_install:
 install:
   - curl http://deepscratch.github.io/hakyll-sandbox/hakyll-sandbox.tar.gz | tar xz
   - cabal sandbox init
-  - cabal install -j 'hakyll ==4.7.*'
-  - cabal configure
 before_script:
   - git config --global user.email "$GH_EMAIL"
   - git config --global user.name "$GH_NAME"
