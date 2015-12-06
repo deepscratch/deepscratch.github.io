@@ -6,7 +6,7 @@ branches:
     - source
 env:
   global:
-    - secure: "NMyZoUdXTGPz6l/ZBV9+yZ/rl/4WwjmIN/bAr/uDx1OK/RqyJe4aixCEprAnWXam9A+n+dQIOOJ+YoQ1QSqiW9KNRo2Y00TmxTn6KmI6bmcgpN6mK9rSr3PtHRR+wz9ncxyHj6l5S0gbd8FmPXxwQckA4sQpku2F0HVtFWw73S1BFv5At05iYz5ltXR30MNC6jIciSjZGdg4z0KW8WedXM//mDBUTstmvFXozvnZ99tUnmlafwbzCydKSnGxvnY3NQjrClptGzW7wtEcE5T9LVdb6z0Xv+6EBduGljkfBPWHSwwkwaMQte/xJ0SqDdC4YWgKIOH3qTd7vC8f2w2jcoO8T0s89PXEazBujXNl7piV3CQvoZZm+Vo2xv04JtOEvunNIB1VeQsmijssdqKcO5b6oyWkVn6KyAES+EKMiV/+vL/i5hX44iYeL8mshMCE7up1ymCWnRIGopJJ9hWrmsd5otEtjb+wCWIDYZGRSIbTOLdH13K6GmvxuW+QYHePyVCx+lIPAjmS0IptlXAMYKB7YRXFE8PA1r+mAgSUI2DVcK6NQeZMYokLVVQEasRuhbbM4HCHyYFRGvooBRPgL5nBvqac0zVFMN+LqwtwQyrGEhHTLCbutl/kWVeRtFR1ieN36WFuk2aoX0fNlihmvYXS5ewIrzi6Ooc8kEKJHnE="
+    - secure: "eJUD6YrCYFv7DQoMQ3SsHIMsdrATCI3PEjNRUNMU4UvyU/QqCwiK+2SNRI0ybF1JCtzxtBm6Y5ZQ4dgHtvbbYOlRLxi4+wFFjZ4KbJTwfpl7WZPQXKdk2j+vV0nkEWHam+/VdF5BHbLNxvai4g649VGQbK/XPzS81DbrKgJvrGYQVyPyCk9w26G0jOqgU76ZO9uAwhP4I5u1VUQww/htWdMkBlB9MHShQTSrb8yM1AvgXq0yfWwd+FiseMGUS9rs4TjZmgUI6pySV138Op0NOQE8tLdQoaMJeB6WMjVsw/JsHsxz+wMevWojywWE3H25NT8CDm5QjSLtk9VSjnlhijeYnspthbSOGeD1vOycwHcGTiytaI8ZzcR8xaVw4uXXSAg37nSOGpN5wUuZrNp9N66sTttornQcnL+45R6CWug5SnG88XZYrufNA9SJXBikHYiQftSaJiZ9pYkrQgyPXDuASiKosUlOmyta0v+nYDxw2pkiOQx/KB6DXxbeSEyQDkzCR04kOCOIxBv8LuzCo/kGschWeUZtjKaFvU+cmRRSeXDHSJKwQaemTK7LSzitV6xEXDSdPyS7z8VuGNESyYXcma6iSkb4+9r9B2owtOgFTBYyj9WmL3181u97DcrKSVqBx7rYxuEhWuCjpDOHlfsPTurKCDD6/F8zsbWnnZ4="
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
@@ -14,19 +14,18 @@ install:
   - curl http://deepscratch.github.io/hakyll-sandbox/hakyll-sandbox.tar.gz | tar xz
   - cabal sandbox init
   - cabal configure --disable-library-profiling --disable-tests --disable-library-coverage --disable-benchmarks --disable-split-objs
-  - cabal install -j --disable-documentation hakyll
 before_script:
-  - git config --global user.email "${GH_EMAIL}"
-  - git config --global user.name "travisci"
+  - git config --global user.email "$GH_EMAIL"
+  - git config --global user.name "$GH_NAME"
   - cd _site
   - git checkout master
   - git pull origin master
   - cd ..
-script: cabal run -j build
+script: cabal run -j rebuild
 after_script:
   - cd _site
   - git status
   - git add --all
   - git commit -m "snapshot $(date '+%m/%d/%y %H:%M')"
-  - git push "$REPO_URL" master | grep -v http
+  - git push "https://$GH_TOKEN@$REPO_URL" master | grep -v http
   - cd ..
