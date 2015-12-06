@@ -1,4 +1,6 @@
 language: haskell
+git:
+  submodules: false
 branches:
   only:
     - source
