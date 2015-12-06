@@ -23,7 +23,7 @@ before_script:
   - git pull origin master
   - cd ..
   - ghc-pkg check -v
-script: cabal run rebuild
+script: .cabal-sandbox/bin/site rebuild 
 after_script:
   - cd _site
   - git status
