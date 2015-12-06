@@ -12,6 +12,7 @@ before_install:
   - git submodule update --init --recursive
 install:
   - curl http://deepscratch.github.io/hakyll-sandbox/hakyll-sandbox.tar.gz | tar xz
+  - cabal sandbox init
   - cabal configure --disable-library-profiling --disable-tests --disable-library-coverage --disable-benchmarks --disable-split-objs
 before_script:
   - git config --global user.email "$GH_EMAIL"
@@ -20,7 +21,7 @@ before_script:
   - git checkout master
   - git pull origin master
   - cd ..
-script: cabal run -j rebuild
+script: cabal run rebuild
 after_script:
   - cd _site
   - git status
