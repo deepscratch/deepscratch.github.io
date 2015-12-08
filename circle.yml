@@ -1,0 +1,38 @@
+machine:
+  timezone:
+    Asia/Shanghai
+  ghc:
+    version: 7.8.4
+
+checkout:
+  pre:
+      - git config --global user.email "circleci@circleci"
+      - git config --global user.name "circleci"
+
+  post:
+    - git submodule update --init --recursive
+
+dependencies:
+  override:
+    - cabal update
+    - curl http://deepscratch.github.io/hakyll-sandbox/hakyll-sandbox.tar.xz | tar Jx
+    - cabal sandbox init
+    - cabal configure --disable-library-profiling --disable-tests --disable-library-coverage --disable-benchmarks --disable-split-objs
+    - git config --global user.email "circleci@circleci"
+    - git config --global user.name "circleci"
+    - cd ./_site && git checkout master
+    - cd ./_site && git pull origin master
+
+test:
+  override:
+    - true
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - cabal run -j build
+      - cd ./_site && git status
+      - cd ./_site && git add --all
+      - cd ./_site && git commit -m "snapshot $(date '+%m/%d/%y %H:%M') [ci skip]"
+      - cd ./_site && git push origin master
