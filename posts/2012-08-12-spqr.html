@@ -1,42 +1,117 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
+<!DOCTYPE html>
+<html lang="zh_cn" <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>My Hakyll Blog - S.P.Q.R. (MODIFIED)</title>
-        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css" />
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <style>
+         body {
+             background-color: #e5e5e5;
+         }
+         #header {
+             border: 1px solid grey;
+             margin-bottom: 12px;
+             background-color: #334455;
+             color: #eee;
+         }
+         h1#title a {
+             font-size: 70%;
+             margin: 1em;
+             font-style:italic;
+             color: #eee;
+         }
+         #about {
+             border: 1px solid grey;
+         }
+         #content {
+             background-color: #ffffff;
+             border: 1px solid #ccc;
+             box-shadow: 0 1px 5px rgba(0,0,0,0.16)
+         }
+         #archives {
+             font-size: 18pt;
+             line-height: 27pt;
+         }
+         #archives li span {
+             color: grey;
+             font-style: italic;
+             font-size: 60%;
+         }
+         h1.title {
+             margin-bottom: 18pt;
+             font-size: 200%;
+             text-align: center;
+         }
+         h1.title span {
+             color: grey;
+             font-size: 30%;
+             font-style: italic;
+             display: block;
+             margin-top: 9pt;
+             text-align: center;
+         }
+         div.post {
+             padding: .5em 2.5em;
+             font-size: 18pt;
+             line-height: 27pt;
+         }
+         div.post p {
+             margin-bottom: 36pt;
+         }
+         div#more {
+             text-align: center;
+             margin: 1.5em auto;
+         }
+         div#footer {
+             border: 1px solid #ccddff;
+             background: #333;
+             color: #e5e5e5;
+             margin-top: 2.5em;
+             min-height: 128px;
+             font-size: 18px;
+             text-align: center;
+             padding-top: 55px;
+         }
+        </style>
     </head>
     <body>
-        <div id="header">
-            <div id="logo">
-                <a href="../">My Hakyll Blog</a>
-            </div>
-            <div id="navigation">
-                <a href="../">Home</a>
-                <a href="../about.html">About</a>
-                <a href="../contact.html">Contact</a>
-                <a href="../archive.html">Archive</a>
-            </div>
-        </div>
-
-        <div id="content">
-            <h1>S.P.Q.R. (MODIFIED)</h1>
-
-            <div class="info">
-    Posted on August 12, 2012
-    
-</div>
-
-<p>Mauris in lorem nisl. Maecenas tempus facilisis ante, eget viverra nisl tincidunt et. Donec turpis lectus, mattis ac malesuada a, accumsan eu libero. Morbi condimentum, tortor et tincidunt ullamcorper, sem quam pretium nulla, id convallis lectus libero nec turpis. Proin dapibus nisi id est sodales nec ultrices tortor pellentesque. Vivamus vel nisi ac lacus sollicitudin vulputate ac ut ligula. Nullam feugiat risus eget eros gravida in molestie sapien euismod. Nunc sed hendrerit orci. Nulla mollis consequat lorem ac blandit. Ut et turpis mauris. Nulla est odio, posuere id ullamcorper sit amet, tincidunt vel justo. Curabitur placerat tincidunt varius. Nulla vulputate, ipsum eu consectetur mollis, dui nibh aliquam neque, at ultricies leo ligula et arcu. Proin et mi eget tellus sodales lobortis. Sed tempor, urna vel pulvinar faucibus, lectus urna vehicula ante, at facilisis dolor odio at lorem. Morbi vehicula euismod urna, et imperdiet urna ornare vitae.</p>
+        <div class="container-fluid">
+            <div class="row">
+                <div id="header" class="col-md-12">
+                    <h1 id="title"><a href="../">some useless technologies</a></h1>
+                </div>
+                <div id="content" class="col-md-offset-2 col-md-8">
+                    <div class="post">
+    <h1 class="title"><a href="../posts/2012-08-12-spqr.html">S.P.Q.R. (MODIFIED)</a>
+        <span>
+            August 12, 2012
+            
+        </span>
+    </h1>
+    <p>Mauris in lorem nisl. Maecenas tempus facilisis ante, eget viverra nisl tincidunt et. Donec turpis lectus, mattis ac malesuada a, accumsan eu libero. Morbi condimentum, tortor et tincidunt ullamcorper, sem quam pretium nulla, id convallis lectus libero nec turpis. Proin dapibus nisi id est sodales nec ultrices tortor pellentesque. Vivamus vel nisi ac lacus sollicitudin vulputate ac ut ligula. Nullam feugiat risus eget eros gravida in molestie sapien euismod. Nunc sed hendrerit orci. Nulla mollis consequat lorem ac blandit. Ut et turpis mauris. Nulla est odio, posuere id ullamcorper sit amet, tincidunt vel justo. Curabitur placerat tincidunt varius. Nulla vulputate, ipsum eu consectetur mollis, dui nibh aliquam neque, at ultricies leo ligula et arcu. Proin et mi eget tellus sodales lobortis. Sed tempor, urna vel pulvinar faucibus, lectus urna vehicula ante, at facilisis dolor odio at lorem. Morbi vehicula euismod urna, et imperdiet urna ornare vitae.</p>
 <p>Sed tincidunt sollicitudin ultrices. In hac habitasse platea dictumst. Morbi ligula lectus, egestas at ultricies nec, fringilla et tellus. Duis urna lorem, bibendum a ornare sed, euismod sed nunc. Aliquam tempor massa at velit fringilla fringilla. Praesent sit amet tempor felis. Maecenas id felis ac velit aliquam tempor a sit amet orci. Nunc placerat nulla pellentesque sem commodo cursus. Praesent quis sapien orci, quis ultricies augue. Nam vestibulum sem non augue semper tincidunt pellentesque ipsum volutpat. Duis congue, nunc a aliquam luctus, quam ante convallis nisi, ac pellentesque lacus orci vel turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse hendrerit nisl eu felis sagittis faucibus. Nunc eu congue lorem. Quisque non nibh nisi, et ultrices massa. Sed vitae erat vitae nulla pellentesque fermentum.</p>
 <p>Ut diam nunc, consectetur ut ultrices eu, iaculis sed felis. Sed lacinia, odio et accumsan luctus, arcu ipsum accumsan erat, sit amet malesuada libero lacus et velit. Donec accumsan tristique tristique. Proin a metus magna, vitae mattis nisl. Integer a libero ipsum. Mauris faucibus eleifend metus id sodales. Morbi ornare, nibh nec facilisis imperdiet, turpis sem commodo lorem, id commodo mauris metus vitae justo. Etiam at pellentesque tortor. Proin mollis accumsan ligula, nec tempus augue auctor quis. Nulla lacinia, mi quis lobortis auctor, nisi diam posuere dui, pulvinar feugiat dui libero eget quam. Fusce eu risus nunc, a consectetur orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas venenatis aliquet orci, a ultricies sem facilisis eu. Donec dolor purus, porta condimentum convallis nec, dignissim nec libero.</p>
 <p>Etiam rutrum ultricies dui, et interdum metus elementum et. Nulla sapien nunc, interdum tristique porttitor in, laoreet vitae mi. Ut vehicula auctor mauris sit amet bibendum. Phasellus adipiscing mattis libero, eget adipiscing erat dignissim at. Vivamus convallis malesuada metus nec cursus. Ut cursus, lorem eleifend sollicitudin condimentum, felis tortor sodales augue, ac tempus lacus ipsum vitae quam. Vestibulum vitae lacus non tortor vehicula iaculis faucibus quis massa.</p>
 <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis malesuada neque nec ante porttitor accumsan. Suspendisse potenti. Aliquam in lacus magna, imperdiet laoreet lectus. Praesent id diam nec ante commodo rhoncus nec vel augue. Pellentesque tortor massa, dignissim ut sagittis sed, hendrerit vitae nunc. Nam gravida, urna vitae hendrerit rutrum, felis augue vulputate tortor, ut varius velit libero nec lectus. In adipiscing massa in est scelerisque ullamcorper. Vivamus in nisi metus.</p>
 
-        </div>
-        <div id="footer">
-            Site proudly generated by
-            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+</div>
+
+<div id="more">
+    - <a href="../">home</a>
+    - <a href="../archive.html">archives</a>
+    -
+</div>
+
+                </div>
+                <div id="footer" class="col-md-12">
+                    Site proudly generated by
+                    <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+                </div>
+
+            </div>
         </div>
     </body>
 </html>
