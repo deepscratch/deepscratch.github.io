@@ -16,15 +16,11 @@ dependencies:
     - cabal update
     - curl http://deepscratch.github.io/hakyll-sandbox/hakyll-sandbox.tar.xz | tar Jx
     - cabal sandbox init
-    - cabal configure --disable-library-profiling --disable-tests --disable-library-coverage --disable-benchmarks --disable-split-objs
+    - cabal configure --disable-library-profiling --disable-tests --disable-coverage --disable-benchmarks --disable-split-objs
     - git config --global user.email "circleci@circleci"
     - git config --global user.name "circleci"
     - cd ./_site && git checkout master
     - cd ./_site && git pull origin master
-
-test:
-  override:
-    - uptime
 
 deployment:
   production:
