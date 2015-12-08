@@ -1,8 +1,17 @@
-<div class="info">
-    Posted on $date$
-    $if(author)$
-        by $author$
-    $endif$
+<div class="post">
+    <h1 class="title"><a href="$url$">$title$</a>
+        <span>
+            $date$
+            $if(author)$
+            by $author$
+            $endif$
+        </span>
+    </h1>
+    $body$
 </div>
 
-$body$
+<div id="more">
+    - <a href="/">home</a>
+    - <a href="/archive.html">archives</a>
+    -
+</div>
