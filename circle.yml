@@ -1,13 +1,12 @@
 machine:
-  timezone:
-    Asia/Shanghai
+  timezone: Asia/Shanghai
   ghc:
     version: 7.8.4
 
 checkout:
   pre:
-      - git config --global user.email "circleci@circleci"
-      - git config --global user.name "circleci"
+    - git config --global user.email "circleci@circleci"
+    - git config --global user.name "circleci"
 
   post:
     - git submodule update --init --recursive
@@ -25,7 +24,7 @@ dependencies:
 
 test:
   override:
-    - true
+    - uptime
 
 deployment:
   production:
