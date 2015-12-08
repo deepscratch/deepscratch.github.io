@@ -26,7 +26,7 @@ dependencies:
 
 deployment:
   production:
-    branch: master
+    branch: source
     commands:
       - cabal run -j build
       - cd ./_site && git status
