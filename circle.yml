@@ -14,8 +14,8 @@ checkout:
 dependencies:
   override:
     - cabal update
-    - curl http://deepscratch.github.io/hakyll-sandbox/hakyll-sandbox.tar.xz | tar Jx
     - cabal sandbox init
+    - curl http://deepscratch.github.io/hakyll-sandbox/hakyll-sandbox.tar.xz | tar Jx
     - cabal sandbox hc-pkg recache
     - cabal configure --disable-library-profiling --disable-tests --disable-coverage --disable-benchmarks --disable-split-objs
     - git config --global user.email "circleci@circleci"
