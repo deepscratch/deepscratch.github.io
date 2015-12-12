@@ -1,5 +1,8 @@
 $font-stack: 'Hannotate SC', 'Helvetica', sans-serif;
 $font-foot: 'STHeiti', 'Consolas', 'monospace';
+$font-date: 'Consolas', 'monospace';
+$font-more: 'Consolas', 'monospace';
+$font-code: 'Consolas', 'monospace';
 
 $a-tags: 'a, a:active, a:hover, a:visited';
 $a-tags-hover: 'a:active, a:hover';
@@ -22,6 +25,24 @@ $blue:      #268bd2;
 $cyan:      #2aa198;
 $green:     #859900;
 
+.sourceCode {
+  color: $base01;
+  font-family: $font-code;
+};
+.Sourcecode span.kw { color: $green; font-weight: bold; }
+.sourceCode span.dt { color: $red; }
+.sourceCode span.dv { color: $cyan; }
+.sourceCode span.bn { color: $cyan; }
+.sourceCode span.fl { color: $cyan; }
+.sourceCode span.ch { color: $blue; }
+.sourceCode span.st { color: $blue; }
+.sourceCode span.co { color: $base1; font-style: italic; }
+.sourceCode span.ot { color: $green; }
+.sourceCode span.al { color: $red; font-weight: bold; }
+.sourceCode span.fu { color: $violet; }
+.sourceCode span.re { }
+.sourceCode span.er { color: $red; font-weight: bold; }
+
 #{$a-tags} {
   color: $yellow;
   text-decoration: underline;
@@ -31,34 +52,34 @@ $green:     #859900;
   background-color: $base2;
 }
 
-
 body {
   font-family: $font-stack;
   background-color: $base3;
 
-  #header {
-    box-shadow: 0 3px 8px rgba(0,0,0,0.8);
-    margin-bottom: 2em;
-    background-color: $base01;
-    color: $base2;
-
-    h1#title {
-      #{$a-tags} {
-        font-size: 80%;
-        margin: 1em;
-        font-style:italic;
-        color: $base2;
-      }
-      #{$a-tags-hover} {
-        background-color: $base01;
-      }
-
+  .navbar-solarized {
+    background-color: $base1;
+    color: $base0;
+    border-radius: 0;
+    border: 0;
+    .logo {
     }
-
+    .logo #{$a-tags} {
+      display: inline-block;
+      font-size: 12pt;
+      color: $base2;
+      padding: 4px 30px;
+      background-color: $yellow;
+      text-decoration: none;
+    }
+    .logo #{$a-tags-hover} {
+      background-color: $yellow;
+    }
   }
 
   #content {
     color: $base01;
+    min-width: 32em;
+    max-width: 72em;
 
     h1.title {
       margin-bottom: 18pt;
@@ -69,41 +90,43 @@ body {
       font-weight: bold;
 
       span {
+        font-family: $font-date;
+        font-weight: normal;
         color: $base1;
-        font-size: 30%;
-        font-style: italic;
+        font-size: 10pt;
         display: block;
         margin-top: 9pt;
         text-align: center;
       }
 
-      #{$a-tags} {
-        color: $yellow;
-        text-decoration: none;
-      }
+  #{$a-tags} {
+    color: $yellow;
+    text-decoration: none;
+  }
 
-    }
+  }
 
-    div.post {
-      padding: .5em 2.5em;
-      font-size: 18pt;
-      line-height: 27pt;
-    }
-    div.post p {
-      margin-bottom: 36pt;
-    }
+  div.post {
+    padding: .5em 2.5em;
+    font-size: 18pt;
+    line-height: 27pt;
+  }
+  div.post p {
+    margin-bottom: 36pt;
+  }
 
-    div#more {
-      text-align: center;
-      margin-top: -4em;
-      margin-bottom: 1.5em;
-    }
+  div#more {
+    font-family: $font-more;
+    text-align: center;
+    margin-top: -4em;
+    margin-bottom: 1.5em;
+  }
 
-    hr {
-      display: block;
-      margin: 4em auto;
-      border: 1px dashed $base2;
-    }
+  hr {
+    display: block;
+    margin: 4em auto;
+    border: 1px dashed $base2;
+  }
 
   }
 
