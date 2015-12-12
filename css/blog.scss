@@ -29,34 +29,37 @@ $green:     #859900;
 
 #{$a-tags-hover} {
   background-color: $base2;
-
 }
 
 
 body {
   font-family: $font-stack;
-  background-color: $base2;
+  background-color: $base3;
 
   #header {
-    box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.8);
     margin-bottom: 2em;
-    background-color: $base0;
+    background-color: $base01;
     color: $base2;
 
-    h1#title a {
-      font-size: 80%;
-      margin: 1em;
-      font-style:italic;
-      color: $base2;
+    h1#title {
+      #{$a-tags} {
+        font-size: 80%;
+        margin: 1em;
+        font-style:italic;
+        color: $base2;
+      }
+      #{$a-tags-hover} {
+        background-color: $base01;
+      }
+
     }
 
   }
 
   #content {
-    background-color: $base3;
     color: $base01;
-    border: 1px solid $base1;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+
     h1.title {
       margin-bottom: 18pt;
       font-size: 200%;
@@ -74,7 +77,7 @@ body {
         text-align: center;
       }
 
-      a {
+      #{$a-tags} {
         color: $yellow;
         text-decoration: none;
       }
@@ -110,6 +113,12 @@ body {
     margin: 2.5em auto;
     font-size: 14px;
     text-align: center;
+  }
+
+  pre.sourceCode {
+    background-color: $base2;
+    border: 0;
+    border-radius: 0;
   }
 
 }
