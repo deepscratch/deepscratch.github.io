@@ -1,0 +1,115 @@
+$font-stack: 'Hannotate SC', 'Helvetica', sans-serif;
+$font-foot: 'STHeiti', 'Consolas', 'monospace';
+
+$a-tags: 'a, a:active, a:hover, a:visited';
+$a-tags-hover: 'a:active, a:hover';
+$a-tags-visited: 'a:visited';
+
+$base03:    #002b36;
+$base02:    #073642;
+$base01:    #586e75;
+$base00:    #657b83;
+$base0:     #839496;
+$base1:     #93a1a1;
+$base2:     #eee8d5;
+$base3:     #fdf6e3;
+$yellow:    #b58900;
+$orange:    #cb4b16;
+$red:       #dc322f;
+$magenta:   #d33682;
+$violet:    #6c71c4;
+$blue:      #268bd2;
+$cyan:      #2aa198;
+$green:     #859900;
+
+#{$a-tags} {
+  color: $yellow;
+  text-decoration: underline;
+}
+
+#{$a-tags-hover} {
+  background-color: $base2;
+
+}
+
+
+body {
+  font-family: $font-stack;
+  background-color: $base2;
+
+  #header {
+    box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+    margin-bottom: 2em;
+    background-color: $base0;
+    color: $base2;
+
+    h1#title a {
+      font-size: 80%;
+      margin: 1em;
+      font-style:italic;
+      color: $base2;
+    }
+
+  }
+
+  #content {
+    background-color: $base3;
+    color: $base01;
+    border: 1px solid $base1;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+    h1.title {
+      margin-bottom: 18pt;
+      font-size: 200%;
+      text-align: center;
+      color: $base2;
+      font-family: 'Geogira';
+      font-weight: bold;
+
+      span {
+        color: $base1;
+        font-size: 30%;
+        font-style: italic;
+        display: block;
+        margin-top: 9pt;
+        text-align: center;
+      }
+
+      a {
+        color: $yellow;
+        text-decoration: none;
+      }
+
+    }
+
+    div.post {
+      padding: .5em 2.5em;
+      font-size: 18pt;
+      line-height: 27pt;
+    }
+    div.post p {
+      margin-bottom: 36pt;
+    }
+
+    div#more {
+      text-align: center;
+      margin-top: -4em;
+      margin-bottom: 1.5em;
+    }
+
+    hr {
+      display: block;
+      margin: 4em auto;
+      border: 1px dashed $base2;
+    }
+
+  }
+
+  div#footer {
+    font-family: $font-foot;
+    color: $base1;
+    margin: 2.5em auto;
+    font-size: 14px;
+    text-align: center;
+  }
+
+}
