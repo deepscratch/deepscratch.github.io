@@ -1,4 +1,5 @@
 $font-stack: 'Hannotate SC', 'Helvetica', sans-serif;
+$font-title: 'Hannotate SC', 'Helvetica', sans-serif;
 $font-foot: 'STHeiti', 'Consolas', 'monospace';
 $font-date: 'Consolas', 'monospace';
 $font-more: 'Consolas', 'monospace';
@@ -24,10 +25,17 @@ $violet:    #6c71c4;
 $blue:      #268bd2;
 $cyan:      #2aa198;
 $green:     #859900;
-
+pre {
+  padding: 1.5em
+}
 .sourceCode {
-  color: $base01;
+  background-color: $base2;
+  border: 0;
+  border-radius: 0;
+  color: $base00;
   font-family: $font-code;
+  font-size: 0.9em;
+  line-height: 1.1em;
 };
 .Sourcecode span.kw { color: $green; font-weight: bold; }
 .sourceCode span.dt { color: $red; }
@@ -39,7 +47,7 @@ $green:     #859900;
 .sourceCode span.co { color: $base1; font-style: italic; }
 .sourceCode span.ot { color: $green; }
 .sourceCode span.al { color: $red; font-weight: bold; }
-.sourceCode span.fu { color: $violet; }
+.sourceCode span.fu { color: $yellow; }
 .sourceCode span.re { }
 .sourceCode span.er { color: $red; font-weight: bold; }
 
@@ -52,20 +60,20 @@ $green:     #859900;
   background-color: $base2;
 }
 
+
 body {
   font-family: $font-stack;
   background-color: $base3;
+  font-size: 18pt;
 
   .navbar-solarized {
     background-color: $base1;
     color: $base0;
     border-radius: 0;
     border: 0;
-    .logo {
-    }
+    font-size: 0.67em;
     .logo #{$a-tags} {
       display: inline-block;
-      font-size: 12pt;
       color: $base2;
       padding: 4px 30px;
       background-color: $yellow;
@@ -76,72 +84,75 @@ body {
     }
   }
 
-  #content {
-    color: $base01;
-    min-width: 32em;
-    max-width: 72em;
+    #content {
+      color: $base00;
+      max-width: 52em;
 
-    h1.title {
-      margin-bottom: 18pt;
-      font-size: 200%;
-      text-align: center;
-      color: $base2;
-      font-family: 'Geogira';
-      font-weight: bold;
-
-      span {
-        font-family: $font-date;
-        font-weight: normal;
-        color: $base1;
-        font-size: 10pt;
-        display: block;
-        margin-top: 9pt;
+      h1.title {
+        margin-bottom: 18pt;
+        font-size: 2em;
         text-align: center;
+        color: $base2;
+        font-family: $font-title;
+        font-weight: bold;
+
+        span {
+          font-family: $font-date;
+          font-weight: normal;
+          color: $base1;
+          font-size: 0.3em;
+          display: block;
+          margin-top: 9pt;
+          text-align: center;
+        }
+
+        #{$a-tags} {
+          color: $yellow;
+          text-decoration: none;
+        }
+
       }
 
-  #{$a-tags} {
-    color: $yellow;
-    text-decoration: none;
+        div.post {
+          padding: .5em 2.5em;
+          line-height: 27pt;
+        }
+
+        div.post p {
+          margin-bottom: 36pt;
+        }
+
+        div#more {
+          font-family: $font-more;
+          font-size: 0.5em;
+          text-align: center;
+          margin-top: -4em;
+          margin-bottom: 1.5em;
+        }
+
+        hr {
+          display: block;
+          margin: 4em auto;
+          border: 1px dashed $base2;
+        }
   }
 
-  }
-
-  div.post {
-    padding: .5em 2.5em;
-    font-size: 18pt;
-    line-height: 27pt;
-  }
-  div.post p {
-    margin-bottom: 36pt;
-  }
-
-  div#more {
-    font-family: $font-more;
-    text-align: center;
-    margin-top: -4em;
-    margin-bottom: 1.5em;
-  }
-
-  hr {
-    display: block;
-    margin: 4em auto;
-    border: 1px dashed $base2;
-  }
-
+  ul#archives {
+    padding-left: 2.5em;
+    li {
+      span {
+        font-family: $font-date;
+        font-size: 0.6em;
+      }
+    }
   }
 
   div#footer {
     font-family: $font-foot;
     color: $base1;
     margin: 2.5em auto;
-    font-size: 14px;
+    font-size: 0.5em;
     text-align: center;
-  }
-
-  pre.sourceCode {
-    background-color: $base2;
-    border: 0;
-    border-radius: 0;
   }
 
 }
