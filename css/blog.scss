@@ -1,32 +1,39 @@
-$font-stack: 'Hannotate SC', 'Helvetica', sans-serif;
-$font-title: 'Hannotate SC', 'Helvetica', sans-serif;
-$font-foot: 'STHeiti', 'Consolas', 'monospace';
-$font-date: 'Consolas', 'monospace';
-$font-more: 'Consolas', 'monospace';
-$font-code: 'Consolas', 'monospace';
+$font-stack: sans;
+$font-title: sans-serif;
+$font-foot: monospace;
+$font-date: monospace;
+$font-more: monospace;
+$font-code: monospace;
 
 $a-tags: 'a, a:active, a:hover, a:visited';
 $a-tags-hover: 'a:active, a:hover';
 $a-tags-visited: 'a:visited';
 
-$base03:    #002b36;
-$base02:    #073642;
-$base01:    #586e75;
-$base00:    #657b83;
-$base0:     #839496;
-$base1:     #93a1a1;
-$base2:     #eee8d5;
-$base3:     #fdf6e3;
-$yellow:    #b58900;
-$orange:    #cb4b16;
-$red:       #dc322f;
-$magenta:   #d33682;
-$violet:    #6c71c4;
-$blue:      #268bd2;
-$cyan:      #2aa198;
-$green:     #859900;
+
+$base00:    #151515;
+$base01:    #202020;
+$base02:    #303030;
+$base03:    #505050;
+
+$base0:     #b0b0b0;
+$base1:     #d0d0d0;
+$base2:     #e0e0e0;
+$base3:     #f5f5f5;
+
+$yellow:    #f4bf75;
+$orange:    #d28445;
+$red:       #ac4142;
+$magenta:   #8f5536;
+$violet:    #aa759f;
+$blue:      #6a9fb5;
+$cyan:      #75b5aa;
+$green:     #90a959;
+
 pre {
-  padding: 1.5em
+  padding: 1.5em;
+  border-radius: 0;
+  width: 90%;
+  margin: 0 auto 36pt;
 }
 .sourceCode {
   background-color: $base2;
@@ -44,49 +51,39 @@ pre {
 .sourceCode span.fl { color: $cyan; }
 .sourceCode span.ch { color: $blue; }
 .sourceCode span.st { color: $blue; }
-.sourceCode span.co { color: $base1; font-style: italic; }
+.sourceCode span.co { color: $base03; font-style: italic; }
 .sourceCode span.ot { color: $green; }
 .sourceCode span.al { color: $red; font-weight: bold; }
-.sourceCode span.fu { color: $yellow; }
+.sourceCode span.fu { color: $orange; }
 .sourceCode span.re { }
 .sourceCode span.er { color: $red; font-weight: bold; }
 
 #{$a-tags} {
-  color: $yellow;
-  text-decoration: underline;
+  color: $magenta;
+  text-decoration: none;
+  border-bottom: 1px dashed $magenta;
 }
 
 #{$a-tags-hover} {
-  background-color: $base2;
+   text-decoration: none;
+   border-bottom: 1px solid $magenta;
 }
 
 
 body {
   font-family: $font-stack;
   background-color: $base3;
-  font-size: 18pt;
+  font-size: 20px;
 
   .navbar-solarized {
-    background-color: $base1;
-    color: $base0;
-    border-radius: 0;
-    border: 0;
-    font-size: 0.67em;
-    .logo #{$a-tags} {
-      display: inline-block;
-      color: $base2;
-      padding: 4px 30px;
-      background-color: $yellow;
-      text-decoration: none;
-    }
-    .logo #{$a-tags-hover} {
-      background-color: $yellow;
+    #{$a-tags} {
+      border-bottom: none;
     }
   }
 
     #content {
       color: $base00;
-      max-width: 52em;
+
 
       h1.title {
         margin-bottom: 18pt;
@@ -99,16 +96,15 @@ body {
         span {
           font-family: $font-date;
           font-weight: normal;
-          color: $base1;
-          font-size: 0.3em;
+          color: $base0;
+          font-size: 0.5em;
           display: block;
           margin-top: 9pt;
           text-align: center;
         }
 
         #{$a-tags} {
-          color: $yellow;
-          text-decoration: none;
+          color: $magenta;
         }
 
       }
@@ -120,6 +116,10 @@ body {
 
         div.post p {
           margin-bottom: 36pt;
+        }
+
+        blockquote p {
+          margin-bottom: 0 !important;
         }
 
         div#more {
@@ -140,16 +140,18 @@ body {
   ul#archives {
     padding-left: 2.5em;
     li {
+      font-size: 0.8em;
       span {
         font-family: $font-date;
         font-size: 0.6em;
+        font-style: italic;
       }
     }
   }
 
   div#footer {
     font-family: $font-foot;
-    color: $base1;
+    color: $base0;
     margin: 2.5em auto;
     font-size: 0.5em;
     text-align: center;
