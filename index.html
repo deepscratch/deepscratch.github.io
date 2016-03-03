@@ -12,25 +12,29 @@
         <script src="./js/bootstrap.min.js"></script>
     </head>
     <body>
-        <nav class="navbar-solarized">
-            <div class>
-                <div class="logo">
-                    <a href="./">some useless technologies</a>
-                </div>
+        <div class="container">
+            <div class="header clearfix">
+                <nav>
+                    <ul class="nav nav-pills pull-right navbar-solarized">
+                        <li role="presentation"><a href="./">首页</a></li>
+                        <li role="presentation"><a href="./archive.html">归档</a></li>
+                        <li role="presentation"><a href="#">关于</a></li>
+                    </ul>
+                </nav>
+                <h3 class="text-muted">无用技术汇</h3>
             </div>
-        </nav>
 
-        <div class="container-fluid">
-            <div class="row">
-                <div id="content">
-                    
+
+            <div class="container">
+                <div class="row">
+                    <div id="content">
+                        
 <div class="post">
-    <h1 class="title"><a href="./posts/journal/2016-03-03-postgresql-too-many-work-mem.html">2016-03-03-postgresql-too-many-work-mem</a> <span>March  3, 2016</span></h1>
-    <h1 id="postgresql-work_mem-不宜设置过大">PostgreSQL: work_mem 不宜设置过大</h1>
-<p>今天一台 postgresql 机器 swap 报警。大约占用了 2GB 的 swap 空间。登陆机器后， 首先通过 <code>/proc</code> 文件系统找到了使用 swap 较多的进程。</p>
-<pre><code>grep  'VmSwap:' /proc/*/status   | sort -n -k 2</code></pre>
+    <h1 class="title"><a href="./posts/journal/2016-03-03-postgresql-too-many-work-mem.html">PostgreSQL 里 work_mem 的配置</a> <span>March  3, 2016</span></h1>
+    <p>今天一台 postgresql 机器 swap 报警。大约占用了 2GB 的 swap 空间。登陆机器后， 首先通过 <code>/proc</code> 文件系统找到了使用 swap 较多的进程。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">grep</span>  <span class="st">'VmSwap:'</span> /proc/*/status   <span class="kw">|</span> <span class="kw">sort</span> -n -k 2</code></pre></div>
 <p>发现 swap 占用最多的进程都是 postgres 的服务进程。然后在核实了系统的 <code>vm.swappiness</code> 确实已经设置为 0 的情况下，开始怀疑是 postgres 配置了过多的内 存。</p>
-<p>考虑到 swap 是用来交换系统匿名页(anonymous pages)的，匿名页是通过 malloc 系列 函数产生的内存分配，因此怀疑是 postgres 的 <code>work_mem</code> 配置有问题。查看 postgres.conf 后发现，work_mem 被配置成了 10GB 。虽然系统内存总共是 128 GB，但 是按照 PostgreSQL 文档的描述[^1]，每个服务进程至少会分配 work_mem 大小的内存进 行排序等操作。通过 netstat -ant 了解到机器上的服务进程一共有将近 200 个，并且 大多用于进行统计等业务。这也基本符合 <code>work_mem</code> 设置过大从而导致内存使用过多的 特征。</p>
+<p>考虑到 swap 是用来交换系统匿名页(anonymous pages)的，匿名页是通过 malloc 系列 函数产生的内存分配，因此怀疑是 postgres 的 <code>work_mem</code> 配置有问题。查看 postgres.conf 后发现，work_mem 被配置成了 10GB 。虽然系统内存总共是 128 GB，但 是按照 <a href="http://www.postgresql.org/docs/9.4/static/runtime-config-resource.html%22">PostgreSQL 文档</a> 的描述，每个服务进程至少会分配 work_mem 大小的内存进行排序等操作。通过 netstat -ant 了解到机器上的服务进程一共有将近 200 个，并且大多用于进行统计等业务。这也 基本符合 <code>work_mem</code> 设置过大从而导致内存使用过多的特征。</p>
 <p>对于 work_mem 文档中做了以下描述：</p>
 <blockquote>
 <p>Note that for a complex query, several sort or hash operations might be running in parallel; each operation will be allowed to use as much memory as this value specifies before it starts to write data into temporary files</p>
@@ -39,23 +43,20 @@
 <blockquote>
 <p>Therefore, the total memory used could be many times the value of work_mem;</p>
 </blockquote>
-<p>[^1] http://www.postgresql.org/docs/9.4/static/runtime-config-resource.html</p>
 
 </div>
 <hr>
 
 <div class="post">
-    <h1 class="title"><a href="./posts/journal/2016-01-16-invalid-path-mtu.html">2016-01-16-invalid-path-mtu</a> <span>January 16, 2016</span></h1>
-    <h2 id="深圳-vpn-mtu-问题">深圳 VPN MTU 问题</h2>
-<p>近来一直发现深圳的机器连接北京的 ERP 系统时，如果数据包比较大就会出现服务器响 应超时。问题发现后，首先使用深圳的 Mikrotik 设备上的 http client 发送了一个大 包进行排查。为了构造一个较大的数据包，在 GET 的参数里添加一些无用的数据。</p>
-<pre><code>/tool fetch url=&quot;http://10.0.8.32:8810/index.html\?id=1111...</code></pre>
+    <h1 class="title"><a href="./posts/journal/2016-01-16-invalid-path-mtu.html">排查 Path MTU 问题</a> <span>January 16, 2016</span></h1>
+    <p>近来一直发现深圳的机器连接北京的系统时，如果数据包比较大就会出现服务器响应超时。 问题发现后，首先使用深圳的 Mikrotik 设备上的 http client 发送了一个大包进行排 查。为了构造一个较大的数据包，在 GET 的参数里添加一些无用的数据。</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">/tool</span> fetch url=<span class="st">&quot;http://10.0.8.32:8810/index.html\?id=1111...</span></code></pre></div>
 <p>然后在 Mikrotik 端和 ERP 的 NGINX 端都启动了抓包程序。在 NGINX 端抓包发现一旦 tcpdump 显示的数据包大小超过 1390 。三次握手的由 Mikrotik 发送的最后一个 ACK 包（这个包同时带有 PSH Flag 并且还携带了数据），就无法被收到。Mikrotik 端抓包 显示这个 ACK 包在不停被重传。由于问题的复现依赖于数据包的大小，因此感觉到是 Path MTU 的问题，于是开始使用不同大小的 ICMP 包进行 ping 测试</p>
-<pre><code>/ping VPN网关地址 size=1392</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">/ping</span> VPN网关地址 size=1392</code></pre></div>
 <p>测试后发现只要是 size &gt; 1392 包就会被丢弃。感觉像是链路上有个地方的 MTU 配置出 错了。（考虑到 PPPoE 的默认 MTU 是 1492，1392很可能是被打错了）</p>
 <p>最终无奈，只能将 Mikrotik 设备上 PPPoE 接口的 MTU 缩小，以解决这个问题。</p>
-<p>附：</p>
 <p>如果使用 Linux 进行 Path MTU 测试可以使用这个命令，</p>
-<pre><code>ping -M dont -s 1464 114.114.114.114</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ping</span> -M dont -s 1464 114.114.114.114</code></pre></div>
 <p><code>-s</code> 用来指定包的大小。<code>-M dont</code> 给 ICMP 包夹带 <code>don't fragment</code> 标志位，让路 由器直接丢弃过大的 ICMP 包。</p>
 
 </div>
@@ -64,14 +65,15 @@
 
 <div id="more"><a href="./archive.html">archives</a></div>
 
-                    <div id="footer">
-                        theme based on <a href="http://ethanschoonover.com/solarized" target="_blank">solarized</a>
-                        |
-                        generated by <a href="http://jaspervdj.be/hakyll" target="_blank">hakyll</a>
-                        |
-                        deployed by <a href="http://circleci.com" target="_blank">circleci</a>
-                        |
-                        hosted on <a href="http://github.com">github.io</a>
+                        <div id="footer">
+                            theme based on <a href="http://ethanschoonover.com/solarized" target="_blank">solarized</a>
+                            |
+                            generated by <a href="http://jaspervdj.be/hakyll" target="_blank">hakyll</a>
+                            |
+                            deployed by <a href="http://circleci.com" target="_blank">circleci</a>
+                            |
+                            hosted on <a href="http://github.com">github.io</a>
+                        </div>
                     </div>
                 </div>
             </div>
