@@ -61,7 +61,6 @@ pre {
 #{$a-tags} {
   color: $magenta;
   text-decoration: none;
-  border-bottom: 1px dashed $magenta;
 }
 
 #{$a-tags-hover} {
@@ -80,8 +79,57 @@ body {
       border-bottom: none;
     }
   }
+  .no-padding {
+    padding: 0;
+  }
+
+  .header {
+      background-color: $base3;
+      border-bottom: 2px solid #333;
+      position: fixed;
+      height: 64px;
+      padding-left: 32px;
+    h3 {
+      background-color: #111;
+      color: #fff;
+      position: absolute;
+      padding: 9px;
+      margin: 0;
+      bottom: 0;
+      a {
+        color: #fff;
+      }
+      a:hover {
+        text-decoration: none;
+        border: none;
+        color: #ccc;
+      }
+    }
+    div.vr {
+        border-left: 1px solid #333;
+        height: 320px;
+        position: absolute;
+    }
+    nav {
+      position: absolute;
+      bottom: 0;
+      right: 36px;
+      a {
+        background-color: #111;
+        color: #fff;
+        border-radius: 0;
+        padding: 4px 18px;
+        font-size: 80%;
+      }
+      a:hover {
+        background-color: #555;
+        border: none;
+      }
+    }
+  }
 
     #content {
+      padding-top: 64px;
       color: $base00;
 
 
