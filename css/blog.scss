@@ -74,6 +74,10 @@ body {
   background-color: $base3;
   font-size: 20px;
 
+  @media only screen and (max-width: 1024px) {
+     font-size: 16px;
+  }
+
   .navbar-solarized {
     #{$a-tags} {
       border-bottom: none;
@@ -126,6 +130,18 @@ body {
         border: none;
       }
     }
+    @media only screen and (max-width: 480px) {
+      nav {
+        display: none !important;
+      }
+    }
+
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .header {
+      position: relative;
+    }
   }
 
     #content {
@@ -161,6 +177,13 @@ body {
           padding: .5em 2.5em;
           line-height: 27pt;
         }
+        @media only screen and (max-width: 1024px) {
+          div.post {
+            line-height: 20pt;
+          }
+        }
+
+
 
         div.post p {
           margin-bottom: 36pt;
