@@ -39,6 +39,8 @@
             January 16, 2016
         </span>
         
+        <span>日志,网络</span>
+        
     </h1>
     <p>近来一直发现深圳的机器连接北京的系统时，如果数据包比较大就会出现服务器响应超时。 问题发现后，首先使用深圳的 Mikrotik 设备上的 http client 发送了一个大包进行排 查。为了构造一个较大的数据包，在 GET 的参数里添加一些无用的数据。</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">/tool</span> fetch url=<span class="st">&quot;http://10.0.8.32:8810/index.html\?id=1111...</span></code></pre></div>

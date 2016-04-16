@@ -39,6 +39,8 @@
             March  3, 2016
         </span>
         
+        <span>日志,数据库,PostgreSQL</span>
+        
     </h1>
     <p>今天一台 postgresql 机器 swap 报警。大约占用了 2GB 的 swap 空间。登陆机器后， 首先通过 <code>/proc</code> 文件系统找到了使用 swap 较多的进程。</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">grep</span>  <span class="st">'VmSwap:'</span> /proc/*/status   <span class="kw">|</span> <span class="kw">sort</span> -n -k 2</code></pre></div>
