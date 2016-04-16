@@ -1,5 +1,6 @@
 ---
 title: PostgreSQL 里 work_mem 的配置
+tags: 日志,数据库,PostgreSQL
 ---
 
 今天一台 postgresql 机器 swap 报警。大约占用了 2GB 的 swap 空间。登陆机器后，
