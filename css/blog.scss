@@ -75,7 +75,7 @@ body {
   font-size: 20px;
 
   @media only screen and (max-width: 1024px) {
-     font-size: 16px;
+     font-size: 18px;
   }
 
   .navbar-solarized {
@@ -89,7 +89,7 @@ body {
 
   .header {
       background-color: $base3;
-      border-bottom: 2px solid #333;
+      border-bottom: 1px solid #333;
       position: fixed;
       height: 64px;
       padding-left: 32px;
